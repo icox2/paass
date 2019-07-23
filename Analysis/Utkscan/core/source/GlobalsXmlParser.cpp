@@ -78,7 +78,11 @@ void GlobalsXmlParser::ParseGlobalNode(const pugi::xml_node &node, Globals *glob
             globals->SetAdcClockInSeconds(4e-9);
             globals->SetClockInSeconds(8e-9);
             globals->SetFilterClockInSeconds(8e-9);
-        } else {
+        } else if (revision == "F5") {
+	  globals->SetAdcClockInSeconds(2e-9);
+	  globals->SetClockInSeconds(10e-9);
+	  globals->SetFilterClockInSeconds(10e-9);
+	} else {
             throw invalid_argument("GlobalsXmlParser::ParseGlobal - The revision \"" + revision +
                                            "\", is not known to us. Known revisions are A, D, F");
         }
